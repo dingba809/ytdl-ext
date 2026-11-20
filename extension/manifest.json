@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube 下载器 (本地 yt-dlp)",
+  "version": "2.0.0",
+  "description": "一键下载 YouTube 视频/音频/字幕/片段与播放列表，支持 iOS H.264、4K 原画与登录态。",
+  "permissions": ["tabs", "cookies", "storage"],
+  "host_permissions": [
+    "http://127.0.0.1:8877/*",
+    "*://*.youtube.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "YouTube 下载器" },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
+      "js": ["lib.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
